@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		733B0149272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0145272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift */; };
+		733B014A272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0146272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift */; };
+		733B014B272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0147272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift */; };
+		733B014C272ED1B9008B32F4 /* SuperPayDashBoardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0148272ED1B9008B32F4 /* SuperPayDashBoardRouter.swift */; };
 		F57F6AE826DB4A2700C0117D /* FinanceHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F6AE426DB4A2700C0117D /* FinanceHomeRouter.swift */; };
 		F57F6AE926DB4A2700C0117D /* FinanceHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F6AE526DB4A2700C0117D /* FinanceHomeViewController.swift */; };
 		F57F6AEA26DB4A2700C0117D /* FinanceHomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F6AE626DB4A2700C0117D /* FinanceHomeBuilder.swift */; };
@@ -44,6 +48,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		733B0145272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardViewController.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardViewController.swift; sourceTree = SOURCE_ROOT; };
+		733B0146272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardInteractor.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardInteractor.swift; sourceTree = SOURCE_ROOT; };
+		733B0147272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardBuilder.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardBuilder.swift; sourceTree = SOURCE_ROOT; };
+		733B0148272ED1B9008B32F4 /* SuperPayDashBoardRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardRouter.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardRouter.swift; sourceTree = SOURCE_ROOT; };
 		F57F6AE426DB4A2700C0117D /* FinanceHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeRouter.swift; sourceTree = "<group>"; };
 		F57F6AE526DB4A2700C0117D /* FinanceHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeViewController.swift; sourceTree = "<group>"; };
 		F57F6AE626DB4A2700C0117D /* FinanceHomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeBuilder.swift; sourceTree = "<group>"; };
@@ -93,6 +101,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		733B0144272ED1A8008B32F4 /* SuperPayDashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				733B0147272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift */,
+				733B0146272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift */,
+				733B0148272ED1B9008B32F4 /* SuperPayDashBoardRouter.swift */,
+				733B0145272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift */,
+			);
+			path = SuperPayDashBoard;
+			sourceTree = "<group>";
+		};
 		F57F6AD926DB49E500C0117D /* AppHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +128,7 @@
 		F57F6ADA26DB49EA00C0117D /* FinanceHome */ = {
 			isa = PBXGroup;
 			children = (
+				733B0144272ED1A8008B32F4 /* SuperPayDashBoard */,
 				F57F6AE426DB4A2700C0117D /* FinanceHomeRouter.swift */,
 				F57F6AE526DB4A2700C0117D /* FinanceHomeViewController.swift */,
 				F57F6AE626DB4A2700C0117D /* FinanceHomeBuilder.swift */,
@@ -297,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				733B0149272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift in Sources */,
 				F5EAA229270B3A4500EF2B70 /* TransportHomeViewController.swift in Sources */,
 				F57F6AF226DB4A2D00C0117D /* ProfileHomeBuilder.swift in Sources */,
 				F5EAA22A270B3A4500EF2B70 /* TransportHomeRouter.swift in Sources */,
@@ -309,14 +330,17 @@
 				F5829F7626DB34AA00BFA8CD /* AppRootBuilder.swift in Sources */,
 				F5EAA230270B3A7100EF2B70 /* RIBs+Utils.swift in Sources */,
 				F5EAA22B270B3A4500EF2B70 /* TransportHomeBuilder.swift in Sources */,
+				733B014B272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift in Sources */,
 				F5EAA21D270B395900EF2B70 /* HomeWidgetModel.swift in Sources */,
 				F5EAA21E270B395900EF2B70 /* AppHomeRouter.swift in Sources */,
+				733B014A272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift in Sources */,
 				F5EAA21A270B395900EF2B70 /* AppHomeBuilder.swift in Sources */,
 				F5EAA234270B3A9A00EF2B70 /* UIColor+Utils.swift in Sources */,
 				F5EAA22C270B3A4500EF2B70 /* TransportHomeInteractor.swift in Sources */,
 				F5829F7726DB34AA00BFA8CD /* AppRootInteractor.swift in Sources */,
 				F5EAA22D270B3A4500EF2B70 /* RideTypeView.swift in Sources */,
 				F5EAA219270B395900EF2B70 /* HomeWidgetView.swift in Sources */,
+				733B014C272ED1B9008B32F4 /* SuperPayDashBoardRouter.swift in Sources */,
 				F57F6AFE26DB4CD700C0117D /* RootTabBarController.swift in Sources */,
 				F57F6AEB26DB4A2700C0117D /* FinanceHomeInteractor.swift in Sources */,
 				F5EAA21B270B395900EF2B70 /* AppHomeInteractor.swift in Sources */,

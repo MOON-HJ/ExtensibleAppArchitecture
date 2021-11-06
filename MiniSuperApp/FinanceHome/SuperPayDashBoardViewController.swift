@@ -17,4 +17,76 @@ protocol SuperPayDashBoardPresentableListener: AnyObject {
 final class SuperPayDashBoardViewController: UIViewController, SuperPayDashBoardPresentable, SuperPayDashBoardViewControllable {
 
     weak var listener: SuperPayDashBoardPresentableListener?
+    
+    private let headerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.text = "슈퍼페이 잔고"
+        return label
+    }()
+    
+    private let topupButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("충전하기", for: .normal)
+        button.setTitleColor(.systemBlue , for: .normal)
+        button.addTarget(self, action: #selector(topupButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private let cardView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius  = 16
+        view.layer.cornerCurve = .continuous
+        view.backgroundColor = .systemIndigo
+        return view
+    }()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.setUpView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpView() {
+        [headerStackView, cardView].forEach {
+            self.view.addSubview($0)
+        }
+        
+        [titleLabel, topupButton].forEach {
+            self.headerStackView.addArrangedSubview($0)
+        }
+        
+        NSLayoutConstraint.activate([
+            headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            cardView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 10),
+            cardView.heightAnchor.constraint(equalToConstant: 180),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+
+        ])
+    }
+    
+    @objc
+    private func topupButtonDidTap() {
+        
+    }
 }

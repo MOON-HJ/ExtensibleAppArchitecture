@@ -53,6 +53,34 @@ final class SuperPayDashBoardViewController: UIViewController, SuperPayDashBoard
         return view
     }()
     
+    private let currencyLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.text = "원"
+        label.textColor = .white
+        return label
+    }()
+    
+    private let balanceAmountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.textColor = .white
+        label.text = "100,000"
+        return label
+    }()
+    
+    private let balanceStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.alignment = .fill
+        stack.distribution = .equalSpacing
+        stack.axis = .horizontal
+        stack.spacing = 4
+        return stack
+    }()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         self.setUpView()
@@ -65,6 +93,14 @@ final class SuperPayDashBoardViewController: UIViewController, SuperPayDashBoard
     private func setUpView() {
         [headerStackView, cardView].forEach {
             self.view.addSubview($0)
+        }
+        
+        [balanceStackView].forEach {
+            cardView.addSubview($0)
+        }
+        
+        [balanceAmountLabel, currencyLabel].forEach {
+            balanceStackView.addArrangedSubview($0)
         }
         
         [titleLabel, topupButton].forEach {
@@ -80,7 +116,10 @@ final class SuperPayDashBoardViewController: UIViewController, SuperPayDashBoard
             cardView.heightAnchor.constraint(equalToConstant: 180),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+            cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            
+            balanceStackView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            balanceStackView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor)
 
         ])
     }

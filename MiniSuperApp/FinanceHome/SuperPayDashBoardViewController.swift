@@ -128,4 +128,8 @@ final class SuperPayDashBoardViewController: UIViewController, SuperPayDashBoard
     private func topupButtonDidTap() {
         
     }
+  
+  func updateBalance(_ balance: String) {
+    self.balanceAmountLabel.text = balance
+  }
 }

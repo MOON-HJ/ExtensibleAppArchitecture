@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Foundation
 
 protocol SuperPayDashBoardDependency: Dependency {
     var balance: ReadOnlyCurrentValuePublisher<Double> { get }
@@ -13,8 +14,9 @@ protocol SuperPayDashBoardDependency: Dependency {
 }
 
 final class SuperPayDashBoardComponent: Component<SuperPayDashBoardDependency>, SuperPayDashboardInteractorDependency {
-    var balance: ReadOnlyCurrentValuePublisher<Double> { dependency.balance }
-    
+  var balance: ReadOnlyCurrentValuePublisher<Double> { dependency.balance }
+  var balanceFormatter: NumberFormatter { Formatter.balanceFormatter }
+  
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }

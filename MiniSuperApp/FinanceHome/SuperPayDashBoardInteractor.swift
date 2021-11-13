@@ -7,6 +7,7 @@
 
 import ModernRIBs
 import Combine
+import Foundation
 
 protocol SuperPayDashBoardRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -24,6 +25,7 @@ protocol SuperPayDashBoardListener: AnyObject {
 
 protocol SuperPayDashboardInteractorDependency {
   var balance: ReadOnlyCurrentValuePublisher<Double> { get }
+  var balanceFormatter: NumberFormatter { get }
 }
 
 final class SuperPayDashBoardInteractor: PresentableInteractor<SuperPayDashBoardPresentable>, SuperPayDashBoardInteractable, SuperPayDashBoardPresentableListener {
@@ -48,7 +50,8 @@ final class SuperPayDashBoardInteractor: PresentableInteractor<SuperPayDashBoard
     super.didBecomeActive()
     
     dependency.balance.sink { [weak self] in
-      self?.presenter.updateBalance(String($0))
+      self?.dependency.balanceFormatter.string(from: NSNumber(value: $0))
+        .map { self?.presenter.updateBalance($0) }
     }.store(in: &cancellables )
   }
   

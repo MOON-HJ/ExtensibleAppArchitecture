@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		732DC817273FF954002E02DF /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732DC816273FF954002E02DF /* NumberFormatter.swift */; };
 		733B0149272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0145272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift */; };
 		733B014A272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0146272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift */; };
 		733B014B272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0147272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		732DC816273FF954002E02DF /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		733B0145272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardViewController.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardViewController.swift; sourceTree = SOURCE_ROOT; };
 		733B0146272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardInteractor.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardInteractor.swift; sourceTree = SOURCE_ROOT; };
 		733B0147272ED1B9008B32F4 /* SuperPayDashBoardBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuperPayDashBoardBuilder.swift; path = MiniSuperApp/FinanceHome/SuperPayDashBoardBuilder.swift; sourceTree = SOURCE_ROOT; };
@@ -112,6 +114,7 @@
 				733B0146272ED1B9008B32F4 /* SuperPayDashBoardInteractor.swift */,
 				733B0148272ED1B9008B32F4 /* SuperPayDashBoardRouter.swift */,
 				733B0145272ED1B9008B32F4 /* SuperPayDashBoardViewController.swift */,
+				732DC816273FF954002E02DF /* NumberFormatter.swift */,
 			);
 			path = SuperPayDashBoard;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				F57F6AF226DB4A2D00C0117D /* ProfileHomeBuilder.swift in Sources */,
 				F5EAA22A270B3A4500EF2B70 /* TransportHomeRouter.swift in Sources */,
 				F5EAA232270B3A8F00EF2B70 /* UIView+Utils.swift in Sources */,
+				732DC817273FF954002E02DF /* NumberFormatter.swift in Sources */,
 				F57F6AEA26DB4A2700C0117D /* FinanceHomeBuilder.swift in Sources */,
 				F5EAA22E270B3A4500EF2B70 /* SuperPayView.swift in Sources */,
 				F5EAA220270B39DC00EF2B70 /* PushModalPresentationController.swift in Sources */,

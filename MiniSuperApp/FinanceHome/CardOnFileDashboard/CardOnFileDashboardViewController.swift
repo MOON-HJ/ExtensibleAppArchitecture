@@ -44,6 +44,24 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
     return button
   }()
   
+  private let cardOnFileStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.alignment = .fill
+    stackView.distribution = .equalSpacing
+    stackView.axis = .vertical
+    stackView.spacing = 12
+    return stackView
+  }()
+  
+  private lazy var addMethodButton: AddPaymentMethodButton = {
+    let button = AddPaymentMethodButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.roundCorners()
+    button.backgroundColor = .systemGray4
+    button.addTarget(self, action: #selector(addButtonDidTap), for: .touchUpInside)
+    return button
+  }()
   
   init() {
     super.init(nibName: nil, bundle: nil)
@@ -55,17 +73,39 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
   }
   
   private func setUpView() {
-    view.addSubview(headerStackView)
+    [headerStackView, cardOnFileStackView].forEach {
+      self.view.addSubview($0)
+    }
     
     [titleLabel, seeAllButton].forEach {
       headerStackView.addArrangedSubview($0)
     }
-    
+        
     NSLayoutConstraint.activate([
       headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
       headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
       headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+      
+      cardOnFileStackView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 10),
+      cardOnFileStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+      cardOnFileStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+      cardOnFileStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      
+      addMethodButton.heightAnchor.constraint(equalToConstant: 60),
     ])
+  }
+  
+  func update(with models: [PaymentMethodViewModel]) {
+    cardOnFileStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    
+    let views = models.map(PaymentMethodView.init)
+    views.forEach {
+      $0.roundCorners()
+      cardOnFileStackView.addArrangedSubview($0)
+    }
+    cardOnFileStackView.addArrangedSubview(addMethodButton)
+    let heightConstraints = views.map { $0.heightAnchor.constraint(equalToConstant: 60) }
+    NSLayoutConstraint.activate(heightConstraints)
   }
 }
 
@@ -73,6 +113,11 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
 extension CardOnFileDashboardViewController {
   @objc
   private func seeAllButtonTapped() {
+    
+  }
+  
+  @objc
+  private func addButtonDidTap() {
     
   }
 }

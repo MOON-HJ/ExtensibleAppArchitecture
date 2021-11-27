@@ -50,6 +50,7 @@ final class FinanceHomeBuilder: Builder<FinanceHomeDependency>, FinanceHomeBuild
       interactor: interactor,
       viewController: viewController,
       superPayDashboardBuildable: superPayDashboardBuilder,
-      cardOnFileBuildable: cardOnFileDashboardBuilder)
+      cardOnFileBuildable: cardOnFileDashboardBuilder,
+      addPaymentMethodBuildable: addPaymentMethodBuilder)
   }
 }

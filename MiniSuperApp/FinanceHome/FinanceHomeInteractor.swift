@@ -1,11 +1,12 @@
 import ModernRIBs
 
 protocol FinanceHomeRouting: ViewableRouting {
-  // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
   func attachSuperPayDashBoard()
   func attachCardOnFileDashboard()
   func attachAddPaymentMethod()
   func detachAddPaymentMethod()
+  func attachTopup()
+  func detachTopup()
 }
 
 protocol FinanceHomePresentable: Presentable {
@@ -17,7 +18,7 @@ protocol FinanceHomeListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>, FinanceHomeInteractable, FinanceHomePresentableListener, AdaptivePresentationControllerDelegate {
+final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>, FinanceHomeInteractable, FinanceHomePresentableListener, TopupListener, AdaptivePresentationControllerDelegate {
   
   weak var router: FinanceHomeRouting?
   weak var listener: FinanceHomeListener?
@@ -61,5 +62,16 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
   
   func addPaymentMethodDidAddCard(paymenyMethod: PaymentMethod) {
     router?.detachAddPaymentMethod()
+  }
+  
+  // MARK: SuperPayDashboardListener
+  func superPayDashboardDidTapToupup() {
+    router?.attachTopup()
+  }
+  
+  // MARK: TopupListener
+  func topupDidClose() {
+    router?.detachTopup()
+    listener.topupdd
   }
 }

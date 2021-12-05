@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol TopupInteractable: Interactable, AddPaymentMethodListener {
+protocol TopupInteractable: Interactable, AddPaymentMethodListener, EnterAmountListener {
   var router: TopupRouting? { get set }
   var listener: TopupListener? { get set }
   
@@ -20,11 +20,16 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
   private let addPaymentMethodBuildable : AddPaymentMethodBuildable
   private var addPaymentMethodRouting: Routing?
   
+  private let enterAmountBuildable: EnterAmountBuildable
+  private var enterAmountRouting: Routing?
+  
   init(interactor: TopupInteractable,
        viewController: ViewControllable,
-       addPaymentMethodBuildable: AddPaymentMethodBuildable) {
+       addPaymentMethodBuildable: AddPaymentMethodBuildable,
+       enterAmountBuildable: EnterAmountBuildable) {
     self.viewController = viewController
     self.addPaymentMethodBuildable = addPaymentMethodBuildable
+    self.enterAmountBuildable = enterAmountBuildable
     super.init(interactor: interactor)
     interactor.router = self
   }
@@ -41,9 +46,8 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
 
     let router = addPaymentMethodBuildable.build(withListener: interactor)
     self.presentInsideNavigation(router.viewControllable)
-    
-    addPaymentMethodRouting = router
     attachChild(router)
+    addPaymentMethodRouting = router
   }
   
   func detachAddPaymentMethod() {
@@ -53,6 +57,21 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
     self.addPaymentMethodRouting = nil
   }
   
+  func attachEnterAmount() {
+    guard enterAmountRouting == nil else { return }
+    
+    let router = enterAmountBuildable.build(withListener: interactor)
+    self.presentInsideNavigation(router.viewControllable)
+    attachChild(router)
+    enterAmountRouting = router
+  }
+  
+  func detachEnterAmount() {
+    guard let router = enterAmountRouting else { return }
+    self.dismissInsideNavigation(completion: nil)
+    detachChild(router)
+    self.enterAmountRouting = nil
+  }
   
   // MARK: - Private
   

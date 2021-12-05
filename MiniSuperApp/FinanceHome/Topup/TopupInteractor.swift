@@ -12,6 +12,8 @@ protocol TopupRouting: Routing {
   
   func attachAddPaymentMethod()
   func detachAddPaymentMethod()
+  func attachEnterAmount()
+  func detachEnterAmount()
 }
 
 protocol TopupListener: AnyObject {

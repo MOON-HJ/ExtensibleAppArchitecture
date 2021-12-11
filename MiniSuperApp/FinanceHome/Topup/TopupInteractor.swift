@@ -77,6 +77,6 @@ extension TopupInteractor {
       return
     }
     
-    print("❤️ 혜진아 사랑해~")
+    router?.attachEnterAmount()
   }
 }

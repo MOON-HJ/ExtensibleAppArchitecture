@@ -1,0 +1,8 @@
+name: MiniSuperApp
+targets:
+  MiniSuperApp:
+    type: application # 타겟 타입
+    platform: iOS # 타겟 플랫폼
+    sources: # 소스들 추가
+      - path: MiniSuperApp
+

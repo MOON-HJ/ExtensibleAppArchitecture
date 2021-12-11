@@ -84,14 +84,7 @@ final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPr
       self.stackView.addArrangedSubview($0)
     }
     
-    navigationItem.leftBarButtonItem = UIBarButtonItem(
-      image: UIImage(systemName: "xmark",
-                     withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold)
-                    ),
-      style: .plain,
-      target: self,
-      action: #selector(didTapClose)
-    )
+    setupNavigationItem(target: self, action: #selector(didTapClose))
     
     NSLayoutConstraint.activate([
       cardNumberTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),

@@ -1,8 +1,30 @@
 name: MiniSuperApp
+packages: 
+ CombineExt:
+  url: https://github.com/CombineCommunity/CombineExt
+  from: 1.5.1
+
+ ModernRIBs:
+  url: https://github.com/DevYeom/ModernRIBs
+  from: 1.0.0
+
 targets:
   MiniSuperApp:
     type: application # 타겟 타입
     platform: iOS # 타겟 플랫폼
+    setting:
+     base: 
+      INFOPLIST_FILE: SuperMiniApp/Info.plist
+      PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
+     configs:
+       Debug:
+         CODE_SIGN_IDENTITY: "iPhone Developer"
+         CODE_SIGN_ENTITLEMENTS: feather/development.entitlements
+         PROVISIONING_PROFILE_SPECIFIER: "match Development com.covelline.feather"
+
     sources: # 소스들 추가
       - path: MiniSuperApp
+    dependencies:
+      - package: CombineExt
+      - package: ModernRIBs
 

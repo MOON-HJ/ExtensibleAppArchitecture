@@ -5,8 +5,7 @@ struct SelectedPaymentMethodViewModel {
   let name: String
   
   init(_ paymentMethod: PaymentMethod) {
-    image = .init()
-//    image = UIColor(hex: paymentMethod.color).flatMap { UIImage(color: $0) }
+    image = UIColor(hex: paymentMethod.color).flatMap { UIImage(color: $0) }
     name = "\(paymentMethod.name) \(paymentMethod.digits)"
   }
 }

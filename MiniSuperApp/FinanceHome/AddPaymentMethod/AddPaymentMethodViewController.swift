@@ -76,7 +76,7 @@ final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPr
     title = "카드 추가"
     view.backgroundColor = .backgroundColor
     
-    setupNavigationItem(target: self, action: #selector(didTapClose))
+    setupNavigationItem(with: .close, target: self, action: #selector(didTapClose))
     
     [cardNumberTextField, stackView, addCardButton].forEach {
       self.view.addSubview($0)
@@ -85,8 +85,6 @@ final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPr
     [securityTextField, expirationTextField].forEach {
       self.stackView.addArrangedSubview($0)
     }
-    
-    setupNavigationItem(target: self, action: #selector(didTapClose))
     
     NSLayoutConstraint.activate([
       cardNumberTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),

@@ -46,7 +46,7 @@ final class CardOnFileViewController: UIViewController, CardOnFilePresentable, C
     view.backgroundColor = .white
     view.addSubview(tableView)
     
-    setupNavigationItem(target: self, action: #selector(didTapClose))
+    setupNavigationItem(with: .back, target: self, action: #selector(didTapClose))
     
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: view.topAnchor),

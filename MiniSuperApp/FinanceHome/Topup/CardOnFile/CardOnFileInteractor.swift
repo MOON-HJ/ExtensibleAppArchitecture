@@ -17,7 +17,7 @@ protocol CardOnFilePresentable: Presentable {
 }
 
 protocol CardOnFileListener: AnyObject {
-  // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+  func cardOnFileDidTapClose()
 }
 
 final class CardOnFileInteractor: PresentableInteractor<CardOnFilePresentable>, CardOnFileInteractable, CardOnFilePresentableListener {
@@ -43,7 +43,7 @@ final class CardOnFileInteractor: PresentableInteractor<CardOnFilePresentable>, 
   }
   
   func didTapClose() {
-    
+    listener?.cardOnFileDidTapClose()
   }
   
   func didSelectItem(at: Int) {

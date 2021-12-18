@@ -24,6 +24,7 @@ protocol TopupListener: AnyObject {
 
 protocol TopupInteractorDependency {
   var cardOnFileRepository: CardOnFileRepositoryType { get }
+  var paymentMethodStream: CurrentValuePublisher<PaymentMethod> { get }
 }
 
 final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodListener, AdaptivePresentationControllerDelegate {
@@ -86,15 +87,16 @@ final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodList
 
 // MARK: - Interact Method
 extension TopupInteractor {
-  private var hasCard: Bool {
-    return !dependency.cardOnFileRepository.cardOnFile.value.isEmpty
+  private var firstCard: PaymentMethod? {
+    return dependency.cardOnFileRepository.cardOnFile.value.first
   }
   
   private func showAddCardViewOrChargingView() {
-    guard self.hasCard else {
+    guard let firstCard = self.firstCard else {
       router?.attachAddPaymentMethod()
       return
     }
+    dependency.paymentMethodStream.send(firstCard)
     
     router?.attachEnterAmount()
   }

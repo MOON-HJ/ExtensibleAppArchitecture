@@ -13,7 +13,8 @@ protocol CardOnFileRouting: ViewableRouting {
 
 protocol CardOnFilePresentable: Presentable {
   var listener: CardOnFilePresentableListener? { get set }
-  // TODO: Declare methods the interactor can invoke the presenter to present data.
+  
+  func update(with viewModels: [PaymentMethodViewModel])
 }
 
 protocol CardOnFileListener: AnyObject {
@@ -24,17 +25,18 @@ final class CardOnFileInteractor: PresentableInteractor<CardOnFilePresentable>, 
   
   weak var router: CardOnFileRouting?
   weak var listener: CardOnFileListener?
+  private let paymentMethods: [PaymentMethod]
   
-  // TODO: Add additional dependencies to constructor. Do not perform any logic
-  // in constructor.
-  override init(presenter: CardOnFilePresentable) {
+  init(presenter: CardOnFilePresentable, paymentMethods: [PaymentMethod]) {
+    self.paymentMethods = paymentMethods
     super.init(presenter: presenter)
     presenter.listener = self
   }
   
   override func didBecomeActive() {
     super.didBecomeActive()
-    // TODO: Implement business logic here.
+    
+    presenter.update(with: self.paymentMethods.map(PaymentMethodViewModel.init))
   }
   
   override func willResignActive() {

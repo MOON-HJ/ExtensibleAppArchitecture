@@ -19,6 +19,8 @@ protocol CardOnFilePresentable: Presentable {
 
 protocol CardOnFileListener: AnyObject {
   func cardOnFileDidTapClose()
+  func cardOnFileDidTapAddCard()
+  func didSelect(at index: Int)
 }
 
 final class CardOnFileInteractor: PresentableInteractor<CardOnFilePresentable>, CardOnFileInteractable, CardOnFilePresentableListener {
@@ -48,7 +50,12 @@ final class CardOnFileInteractor: PresentableInteractor<CardOnFilePresentable>, 
     listener?.cardOnFileDidTapClose()
   }
   
-  func didSelectItem(at: Int) {
-    
+  func didSelectItem(at index: Int) {
+    guard index < paymentMethods.count else {
+      listener?.didSelect(at: index)
+      return
+    }
+  
+    listener?.cardOnFileDidTapAddCard()
   }
 }

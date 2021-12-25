@@ -40,15 +40,14 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
   }
   
   func cleanupViews() {
-    guard viewController.uiviewController.presentationController == nil || navigationControllable == nil
-    else { return }
-    
+    guard viewController.uiviewController.presentedViewController != nil,
+          navigationControllable != nil else { return }
     navigationControllable?.dismiss(completion: nil)
   }
   
   func attachAddPaymentMethod() {
     guard addPaymentMethodRouting == nil else { return }
-
+    
     let router = addPaymentMethodBuildable.build(withListener: interactor)
     self.presentInsideNavigation(router.viewControllable)
     attachChild(router)

@@ -6,18 +6,18 @@ protocol FinanceHomeDependency: Dependency {
 }
 
 final class FinanceHomeComponent: Component<FinanceHomeDependency>, SuperPayDashBoardDependency, CardOnFileDashboardDependency, AddPaymentMethodDependency, TopupDependency {
-  var cardOnFileRepository: CardOnFileRepositoryType
-  var balance: ReadOnlyCurrentValuePublisher<Double> { balancePublisher }
+  let cardOnFileRepository: CardOnFileRepositoryType
+  let superPayRepository: SuperPayRepository
+  var balance: ReadOnlyCurrentValuePublisher<Double> { superPayRepository.balance }
   var topupBaseViewController: ViewControllable
-  private let balancePublisher: CurrentValuePublisher<Double>
   
   init(
     dependency: FinanceHomeDependency,
-    balance: CurrentValuePublisher<Double>,
     cardOnFileRepository: CardOnFileRepositoryType,
+    superPayRepostiory: SuperPayRepository,
     topupBaseViewController: ViewControllable) {
-      self.balancePublisher = balance
       self.cardOnFileRepository = cardOnFileRepository
+      self.superPayRepository = superPayRepostiory
       self.topupBaseViewController = topupBaseViewController
       super.init(dependency: dependency)
     }
@@ -36,11 +36,10 @@ final class FinanceHomeBuilder: Builder<FinanceHomeDependency>, FinanceHomeBuild
   }
   
   func build(withListener listener: FinanceHomeListener) -> FinanceHomeRouting {
-    let balancePublisher = CurrentValuePublisher<Double>(100000)
     let viewController = FinanceHomeViewController()
     let component = FinanceHomeComponent(dependency: dependency,
-                                         balance: balancePublisher,
                                          cardOnFileRepository: CardOnFileRepository(),
+                                         superPayRepostiory: BaseSuperPayRepository(),
                                          topupBaseViewController: viewController)
     let interactor = FinanceHomeInteractor(presenter: viewController)
     interactor.listener = listener

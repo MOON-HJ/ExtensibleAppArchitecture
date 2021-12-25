@@ -14,7 +14,7 @@ enum DismissButtonType {
   var iconSystemName: String {
     switch self {
     case .back:
-      return "chevron.bacward"
+      return "chevron.backward"
     case .close:
       return "xmark"
     }

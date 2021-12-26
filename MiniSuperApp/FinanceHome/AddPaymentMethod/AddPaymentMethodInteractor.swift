@@ -19,7 +19,7 @@ protocol AddPaymentMethodPresentable: Presentable {
 
 protocol AddPaymentMethodListener: AnyObject {
   func addPaymentMethodDidTapClose()
-  func addPaymentMethodDidAddCard(paymenyMethod: PaymentMethod)
+  func addPaymentMethodDidAddCard(paymentMethod: PaymentMethod)
 }
 
 protocol AddPaymentMethodInteractorDependency {
@@ -60,7 +60,7 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
     dependency.cardOnFileRepository.addCard(info: info).sink(
       receiveCompletion: { _ in },
       receiveValue: { [weak self] in
-        self?.listener?.addPaymentMethodDidAddCard(paymenyMethod: $0)
+        self?.listener?.addPaymentMethodDidAddCard(paymentMethod: $0)
       }).store(in: &cancellables)
   }
 }

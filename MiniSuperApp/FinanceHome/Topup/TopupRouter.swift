@@ -105,6 +105,11 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
     cardOnFileRouting = nil
   }
   
+  func popToRoot() {
+    navigationControllable?.popToRoot(animated: true)
+    resetChildRouting()
+  }
+  
   // MARK: - Private
   
   private let viewController: ViewControllable

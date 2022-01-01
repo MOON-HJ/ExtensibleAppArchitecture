@@ -91,7 +91,7 @@ final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodList
   }
   
   func cardOnFileDidTapAddCard() {
-    
+    router?.attachAddPaymentMethod()
   }
   
   func didSelect(at index: Int) {

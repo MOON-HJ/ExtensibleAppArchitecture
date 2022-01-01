@@ -49,7 +49,13 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
     guard addPaymentMethodRouting == nil else { return }
     
     let router = addPaymentMethodBuildable.build(withListener: interactor)
-    self.presentInsideNavigation(router.viewControllable)
+    
+    if let navigationControllable = navigationControllable {
+      navigationControllable.pushViewController(router.viewControllable, animated: true)
+    } else {
+      self.presentInsideNavigation(router.viewControllable)
+    }
+    
     attachChild(router)
     addPaymentMethodRouting = router
   }

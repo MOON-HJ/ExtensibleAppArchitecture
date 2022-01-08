@@ -8,6 +8,7 @@ protocol TransportHomeRouting: ViewableRouting {
 protocol TransportHomePresentable: Presentable {
   var listener: TransportHomePresentableListener? { get set }
   
+  func fetchSuperPayBalance(_ balance: String)
 }
 
 protocol TransportHomeListener: AnyObject {
@@ -24,18 +25,27 @@ final class TransportHomeInteractor: PresentableInteractor<TransportHomePresenta
   weak var listener: TransportHomeListener?
   
   private let dependency: TransportHomeInteractorDependency
+  private var cancellables: Set<AnyCancellable>
   
   init(
     presenter: TransportHomePresentable,
     dependency: TransportHomeInteractorDependency
   ) {
     self.dependency = dependency
+    self.cancellables = .init()
     super.init(presenter: presenter)
     presenter.listener = self
   }
   
   override func didBecomeActive() {
     super.didBecomeActive()
+    
+    dependency.superPayBalance
+      .receive(on: DispatchQueue.main)
+      .sink(receiveValue: { [weak self] in
+        let balance = Formatter.balanceFormatter.string(from: NSNumber(value: $0)) ?? ""
+        self?.presenter.fetchSuperPayBalance(balance)
+      }).store(in: &cancellables)
     
   }
   

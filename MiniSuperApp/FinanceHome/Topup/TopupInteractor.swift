@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import AddPaymentMethod
 
 protocol TopupRouting: Routing {
   func cleanupViews()

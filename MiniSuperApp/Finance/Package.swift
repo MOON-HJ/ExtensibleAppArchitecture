@@ -13,21 +13,33 @@ let package = Package(
     .library(
       name: "FinanceEntity",
       targets: ["FinanceEntity"]),
+    .library(
+      name: "FinanceRepository",
+      targets: ["FinanceRepository"]),
   ],
   dependencies: [
-    .package(name: "ModernRIBs", url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1"))
+    .package(name: "ModernRIBs", url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1")),
+    .package(path: "../Platform")
   ],
   targets: [
     .target(
       name: "AddPaymentMethod",
       dependencies: [
         "ModernRIBs",
-        "FinanceEntity"
+        "FinanceEntity",
+        "FinanceRepository"
       ]
     ),
     .target(
       name: "FinanceEntity",
       dependencies: []
+    ),
+    .target(
+      name: "FinanceRepository",
+      dependencies: [
+        "FinanceEntity",
+        .product(name: "CombineUtil", package: "Platform")
+      ]
     ),
   ]
 )

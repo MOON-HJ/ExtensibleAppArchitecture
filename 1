@@ -8,23 +8,13 @@ packages:
   url: https://github.com/DevYeom/ModernRIBs
   from: 1.0.0
 
- Finance:
-  path: Finance
-  dependencies:
-   - package: ModernRIBs
-
- Platform:
-  path: Platform
-  dependencies:
-   - package: CombineExt
-
- Transport:
-  path: Transport
-
- CX:
-  path: CX
-
 targets:
+  Finance:
+    type: framework.static
+    platform: iOS
+    Sources:
+     - path: MiniSuperApp/Finance
+
   MiniSuperApp:
     type: application # 타겟 타입
     platform: iOS # 타겟 플랫폼
@@ -43,3 +33,5 @@ targets:
     dependencies:
       - package: CombineExt
       - package: ModernRIBs
+      - package: Finance
+

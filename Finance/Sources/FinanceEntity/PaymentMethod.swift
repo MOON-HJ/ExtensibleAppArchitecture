@@ -13,10 +13,10 @@ public struct PaymentMethod: Decodable {
   public let isPrimary: Bool
   
   public init(
-    id: String
-    name: String
-    digits: String
-    color: String
+    id: String,
+    name: String,
+    digits: String,
+    color: String,
     isPrimary: Bool
   ) {
     self.id = id

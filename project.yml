@@ -43,3 +43,10 @@ targets:
     dependencies:
       - package: CombineExt
       - package: ModernRIBs
+      - target: AddPaymentMethod
+
+  AddPaymentMethod:
+    type: library.static
+    platform: iOS
+    sources:
+      - path: Finance/Sources/AddPaymentMethod

@@ -50,3 +50,10 @@ targets:
     platform: iOS
     sources:
       - path: Finance/Sources/AddPaymentMethod
+
+schemes:
+  SuperMiniApp:
+    build:
+      targets:
+        MiniSuperApp: all
+    run:

@@ -45,6 +45,10 @@ targets:
       - package: ModernRIBs
       - package: Finance
         product: AddPaymentMethod
+      - package: Platform
+        product: RIBsUtil
+      - package: Platform
+        product: SuperUI
 
 schemes:
   SuperMiniApp:

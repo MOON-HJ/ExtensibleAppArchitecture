@@ -13,9 +13,16 @@ let package = Package(
     .library(
       name: "CombineUtil",
       targets: ["CombineUtil"]),
+    .library(
+      name: "RIBsUtil",
+      targets: ["RIBsUtil"]),
+    .library(
+      name: "SuperUI",
+      targets: ["SuperUI"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/CombineCommunity/CombineExt", from: "1.0.0")
+    .package(url: "https://github.com/CombineCommunity/CombineExt", from: "1.0.0"),
+    .package(name: "ModernRIBs", url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1"))
   ],
   targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -25,5 +32,16 @@ let package = Package(
       dependencies: [
         "CombineExt"
       ]),
+    .target(
+      name: "RIBsUtil",
+      dependencies: [
+        "ModernRIBs"
+      ]),
+    .target(
+      name: "SuperUI",
+      dependencies: [
+        "RIBsUtil"
+      ]),
+
   ]
 )

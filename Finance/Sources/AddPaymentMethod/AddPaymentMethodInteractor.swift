@@ -11,10 +11,6 @@ import FinanceRepository
 import CombineUtil
 import Combine
 
-protocol AddPaymentMethodRouting: ViewableRouting {
-  // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
-
 protocol AddPaymentMethodPresentable: Presentable {
   var listener: AddPaymentMethodPresentableListener? { get set }
   // TODO: Declare methods the interactor can invoke the presenter to present data.

@@ -6,10 +6,12 @@
 //
 
 import ModernRIBs
+import Combine
 import FinanceEntity
 import FinanceRepository
-import CombineUtil
-import Combine
+
+protocol AddPaymentMethodRouting: ViewableRouting {
+}
 
 protocol AddPaymentMethodPresentable: Presentable {
   var listener: AddPaymentMethodPresentableListener? { get set }

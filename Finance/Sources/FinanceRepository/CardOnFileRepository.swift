@@ -26,6 +26,8 @@ public final class CardOnFileRepository: CardOnFileRepositoryType {
 //    .init(id: "4", name: "카카오뱅크", digits: "6455", color: "#FFCC00FF", isPrimary: false),
   ])
   
+  public init() { }
+  
   public func addCard(info: AddPaymentInfo) -> AnyPublisher<PaymentMethod, Error> {
     let paymentMethod = PaymentMethod(id: "00", name: "새로운 카드", digits: "\(info.number.suffix(4))", color: "", isPrimary: false)
     

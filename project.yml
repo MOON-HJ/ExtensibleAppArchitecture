@@ -45,6 +45,8 @@ targets:
         product: AddPaymentMethod
       - package: Finance
         product: Topup
+      - package: Finance
+        product: FinanceHome
       - package: Platform
         product: RIBsUtil
       - package: Platform

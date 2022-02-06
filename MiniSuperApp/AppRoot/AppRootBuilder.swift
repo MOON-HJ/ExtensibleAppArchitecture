@@ -1,6 +1,7 @@
 import ModernRIBs
 import UIKit
 import FinanceRepository
+import FinanceHome
 
 protocol AppRootDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be

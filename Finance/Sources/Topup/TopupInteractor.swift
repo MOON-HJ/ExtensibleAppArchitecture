@@ -25,7 +25,7 @@ protocol TopupRouting: Routing {
   func popToRoot()
 }
 
-protocol TopupListener: AnyObject {
+public protocol TopupListener: AnyObject {
   func topupDidClose()
   func topupDidFinish()
 }

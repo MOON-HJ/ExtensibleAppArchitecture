@@ -43,6 +43,8 @@ targets:
       - package: ModernRIBs
       - package: Finance
         product: AddPaymentMethod
+      - package: Finance
+        product: Topup
       - package: Platform
         product: RIBsUtil
       - package: Platform

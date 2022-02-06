@@ -28,15 +28,13 @@ targets:
   MiniSuperApp:
     type: application # 타겟 타입
     platform: iOS # 타겟 플랫폼
-    setting:
+    settings:
      base: 
-      INFOPLIST_FILE: SuperMiniApp/Info.plist
+      INFOPLIST_FILE: MiniSuperApp/Info.plist
       PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
      configs:
        Debug:
-         CODE_SIGN_IDENTITY: "iPhone Developer"
-         CODE_SIGN_ENTITLEMENTS: feather/development.entitlements
-         PROVISIONING_PROFILE_SPECIFIER: "match Development com.covelline.feather"
+         DEVELOPMENT_TEAM: "QL44HLLM22"
 
     sources: # 소스들 추가
       - path: MiniSuperApp

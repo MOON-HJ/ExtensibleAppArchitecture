@@ -21,6 +21,9 @@ packages:
  Transport:
   path: Transport
 
+ Profile:
+  path: Profile
+
  CX:
   path: CX
 
@@ -53,6 +56,10 @@ targets:
         product: SuperUI
       - package: Transport
         product: TransportHome
+      - package: Profile
+        product: ProfileHome
+      - package: CX
+        product: AppHome
 
 schemes:
   SuperMiniApp:

@@ -1,6 +1,8 @@
 import ModernRIBs
 import RIBsUtil
 import FinanceHome
+import ProfileHome
+import AppHome
 
 protocol AppRootInteractable: Interactable,
                               AppHomeListener,

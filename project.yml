@@ -51,6 +51,8 @@ targets:
         product: RIBsUtil
       - package: Platform
         product: SuperUI
+      - package: Transport
+        product: TransportHome
 
 schemes:
   SuperMiniApp:

@@ -14,7 +14,7 @@ protocol TransportHomePresentable: Presentable {
   func fetchSuperPayBalance(_ balance: String)
 }
 
-protocol TransportHomeListener: AnyObject {
+public protocol TransportHomeListener: AnyObject {
   func transportHomeDidTapClose()
 }
 

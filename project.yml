@@ -10,13 +10,9 @@ packages:
 
  Finance:
   path: Finance
-  dependencies:
-   - package: ModernRIBs
 
  Platform:
   path: Platform
-  dependencies:
-   - package: CombineExt
 
  Transport:
   path: Transport

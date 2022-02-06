@@ -14,7 +14,8 @@ let package = Package(
     ],
     dependencies: [
       .package(name: "ModernRIBs", url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1")),
-      .package(path: "../Finance")
+      .package(path: "../Finance"),
+      .package(path: "../Platform")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -24,10 +25,11 @@ let package = Package(
             dependencies: [
               "ModernRIBs",
               .product(name: "FinanceRepository", package: "Finance"),
-              .product(name: "Topup", package: "Finance")
+              .product(name: "Topup", package: "Finance"),
+              .product(name: "SuperUI", package: "Platform"),
             ],
             resources: [
-              .process("Resources")
+              .process("Resources"),
             ]
         ),
     ]

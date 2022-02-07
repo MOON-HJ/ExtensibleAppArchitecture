@@ -1,6 +1,7 @@
 import ModernRIBs
 import Combine
 import Foundation
+import TransportHome
 import CombineUtil
 
 protocol TransportHomeRouting: ViewableRouting {
@@ -12,10 +13,6 @@ protocol TransportHomePresentable: Presentable {
   var listener: TransportHomePresentableListener? { get set }
   
   func fetchSuperPayBalance(_ balance: String)
-}
-
-public protocol TransportHomeListener: AnyObject {
-  func transportHomeDidTapClose()
 }
 
 protocol TransportHomeInteractorDependency {

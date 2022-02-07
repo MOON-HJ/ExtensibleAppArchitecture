@@ -1,6 +1,7 @@
 import ModernRIBs
 import FinanceRepository
 import CombineUtil
+import TransportHome
 import Topup
 
 public protocol TransportHomeDependency: Dependency {
@@ -24,10 +25,6 @@ final class TransportHomeComponent: Component<TransportHomeDependency>, Transpor
 }
 
 // MARK: - Builder
-
-public protocol TransportHomeBuildable: Buildable {
-  func build(withListener listener: TransportHomeListener) -> ViewableRouting
-}
 
 public final class TransportHomeBuilder: Builder<TransportHomeDependency>, TransportHomeBuildable {
   

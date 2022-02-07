@@ -16,6 +16,7 @@ let package = Package(
       .package(name: "ModernRIBs", url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1")),
       .package(path: "../Finance"),
       .package(path: "../Transport"),
+      .package(path: "../Platform")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -24,6 +25,7 @@ let package = Package(
             name: "AppHome",
             dependencies: [
               "ModernRIBs",
+              .product(name: "SuperUI", package: "Platform"),
               .product(name: "FinanceRepository", package: "Finance"),
               .product(name: "TransportHome", package: "Transport")
             ]),

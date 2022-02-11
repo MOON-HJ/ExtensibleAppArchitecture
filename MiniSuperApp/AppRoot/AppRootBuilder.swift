@@ -23,11 +23,14 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
   }
   
   func build() -> (launchRouter: LaunchRouting, urlHandler: URLHandler) {
-    let component = AppRootComponent(dependency: dependency,
-                                     cardOnFileRepository: CardOnFileRepository(),
-                                     superPayRepository: BaseSuperPayRepository())
-    
     let tabBar = RootTabBarController()
+    let component = AppRootComponent(
+      dependency: dependency,
+      cardOnFileRepository: CardOnFileRepository(),
+      superPayRepository: BaseSuperPayRepository(),
+      rootViewController: tabBar
+    )
+    
     
     let interactor = AppRootInteractor(presenter: tabBar)
     

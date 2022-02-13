@@ -49,7 +49,7 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
     setupURLProtocol()
     let network = NetworkImp(session: URLSession(configuration: config))
         
-    self.cardOnFileRepository = CardOnFileRepository()
+    self.cardOnFileRepository = CardOnFileRepository(network: network, baseURL: BaseURL().financeBaseURL)
     self.superPayRepository = BaseSuperPayRepository(network: network, baseURL: BaseURL().financeBaseURL)
     self.rootViewController = rootViewController
     super.init(dependency: dependency)

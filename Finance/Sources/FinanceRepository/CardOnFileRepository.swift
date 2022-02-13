@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import FinanceEntity
 import CombineUtil
+import Network
 
 public protocol CardOnFileRepositoryType {
   var cardOnFile: ReadOnlyCurrentValuePublisher<[PaymentMethod]> { get }
@@ -26,15 +27,28 @@ public final class CardOnFileRepository: CardOnFileRepositoryType {
 //    .init(id: "4", name: "카카오뱅크", digits: "6455", color: "#FFCC00FF", isPrimary: false),
   ])
   
-  public init() { }
+  private let network: Network
+  private let baseURL: URL
+  
+  public init(network: Network, baseURL: URL) {
+    self.network = network
+    self.baseURL = baseURL
+  }
   
   public func addCard(info: AddPaymentInfo) -> AnyPublisher<PaymentMethod, Error> {
-    let paymentMethod = PaymentMethod(id: "00", name: "새로운 카드", digits: "\(info.number.suffix(4))", color: "", isPrimary: false)
+    let request = AddCardRequest(baseURL: baseURL, info: info)
     
-    var new = paymentMethodsSubject.value
-    new.append(paymentMethod)
-    paymentMethodsSubject.send(new)
-    
-    return Just(paymentMethod).setFailureType(to: Error.self).eraseToAnyPublisher()
+    return network.send(request)
+      .map(\.output.card)
+      .handleEvents(
+        receiveSubscription: nil,
+        receiveOutput: { [weak self] method in
+          guard let this = self else { return }
+          this.paymentMethodsSubject.send(this.paymentMethodsSubject.value + [method])
+        },
+        receiveCompletion: nil,
+        receiveCancel: nil,
+        receiveRequest: nil)
+      .eraseToAnyPublisher()
   }
 }

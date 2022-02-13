@@ -91,6 +91,7 @@ let package = Package(
       name: "FinanceRepository",
       dependencies: [
         "FinanceEntity",
+        .product(name: "Network", package: "Platform"),
         .product(name: "CombineUtil", package: "Platform")
       ]
     ),

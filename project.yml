@@ -58,6 +58,10 @@ targets:
         product: AppHome
       - package: Transport
         product: TransportHomeImpl
+      - package: Platform
+        product: Network
+      - package: Platform
+        product: NetworkImp
 
 schemes:
   SuperMiniApp:

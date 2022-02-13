@@ -14,6 +14,7 @@ import Network
 public protocol CardOnFileRepositoryType {
   var cardOnFile: ReadOnlyCurrentValuePublisher<[PaymentMethod]> { get }
   func addCard(info: AddPaymentInfo) -> AnyPublisher<PaymentMethod, Error>
+  func fetch()
 }
 
 public final class CardOnFileRepository: CardOnFileRepositoryType {
@@ -29,10 +30,24 @@ public final class CardOnFileRepository: CardOnFileRepositoryType {
   
   private let network: Network
   private let baseURL: URL
+  private var cancellables: Set<AnyCancellable>
   
   public init(network: Network, baseURL: URL) {
     self.network = network
     self.baseURL = baseURL
+    self.cancellables = .init()
+  }
+  
+  public func fetch() {
+    let request = CardOnFileRequest(baseURL: baseURL)
+    network.send(request)
+      .map(\.output.cards)
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { [weak self] cards in
+          self?.paymentMethodsSubject.send(cards)
+        })
+      .store(in: &cancellables)
   }
   
   public func addCard(info: AddPaymentInfo) -> AnyPublisher<PaymentMethod, Error> {

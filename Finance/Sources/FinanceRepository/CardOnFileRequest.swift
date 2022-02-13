@@ -10,7 +10,7 @@ import Network
 import FinanceEntity
 
 struct CardOnFileRequest: Request {
-  typealias Output = AddCardResponse
+  typealias Output = CardOnFileResponse
   
   let endpoint: URL
   let method: HTTPMethod
@@ -26,5 +26,5 @@ struct CardOnFileRequest: Request {
 }
 
 struct CardOnFileResponse: Decodable {
-  let card: PaymentMethod
+  let cards: [PaymentMethod]
 }

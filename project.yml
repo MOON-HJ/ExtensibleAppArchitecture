@@ -43,7 +43,11 @@ targets:
       - package: Finance
         product: AddPaymentMethod
       - package: Finance
+        product: AddPaymentMethodImpl
+      - package: Finance
         product: Topup
+      - package: Finance
+        product: TopupImpl
       - package: Finance
         product: FinanceHome
       - package: Platform

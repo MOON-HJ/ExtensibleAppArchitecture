@@ -45,3 +45,24 @@ final class EnterAmountDependencyMock: EnterAmountInteractorDependency {
   var selectedPaymentMethods: ReadOnlyCurrentValuePublisher<PaymentMethod> { selectedPaymentMethoSubject }
   var superPayRepository: SuperPayRepository = SuperPayRepositoryMock()
 }
+
+final class EnterAmountListenerMock: EnterAmountListener {
+  
+  var enterAmountDidTapCloseCallCount = 0
+  func enterAmountDidTapClose() {
+    enterAmountDidTapCloseCallCount += 1
+  }
+  
+  var enterAmountDidTapPaymentMethodCallCount = 0
+  func enterAmountDidTapPaymentMethod() {
+    enterAmountDidTapPaymentMethodCallCount += 1
+  }
+  
+  var enterAmountDidFinishTopupCallCount = 0
+  func enterAmountDidFinishTopup() {
+    enterAmountDidFinishTopupCallCount += 1
+  }
+  
+  
+  
+}

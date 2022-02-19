@@ -133,5 +133,3 @@ Composition Root, ( Flow Controller / Coordinator )
 |      | - 사용하기전 Runtime에 초기화가 필요한것<br />- 아직 존재하지 않거나 개발중인 것<br />- 비결정론적 동작/알고리즘 | - 결정론적 동작/알고리즘<br />- 신뢰할만한 하위호환성<br />- Volatile 의존성을 제외한 모든 것 |
 | 예   | 데이터베이스, 옆팀이 개발하고 있는 결제 모듈, 랜덤함수, Date() 등등.. | Foundation, 유틸성 코드, Formmater                           |
 
-
-

@@ -10,6 +10,7 @@ import CombineUtil
 import FinanceEntity
 import FinanceRepository
 import FinanceRepositoryTestSupport
+import CombineSchedulers
 @testable import TopupImpl
 
 final class EnterAmountPresentableMock: EnterAmountPresentable {
@@ -39,10 +40,11 @@ final class EnterAmountPresentableMock: EnterAmountPresentable {
 }
 
 final class EnterAmountDependencyMock: EnterAmountInteractorDependency {
-  var selectedPaymentMethoSubject = CurrentValuePublisher<PaymentMethod>(
+  var mainQueue: AnySchedulerOf<DispatchQueue> { .immediate }
+  var selectedPaymentMethodSubject = CurrentValuePublisher<PaymentMethod>(
     PaymentMethod(id: "", name: "", digits: "", color: "", isPrimary: false)
   )
-  var selectedPaymentMethods: ReadOnlyCurrentValuePublisher<PaymentMethod> { selectedPaymentMethoSubject }
+  var selectedPaymentMethods: ReadOnlyCurrentValuePublisher<PaymentMethod> { selectedPaymentMethodSubject }
   var superPayRepository: SuperPayRepository = SuperPayRepositoryMock()
 }
 
@@ -62,7 +64,4 @@ final class EnterAmountListenerMock: EnterAmountListener {
   func enterAmountDidFinishTopup() {
     enterAmountDidFinishTopupCallCount += 1
   }
-  
-  
-  
 }

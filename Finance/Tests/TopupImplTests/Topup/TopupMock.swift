@@ -7,11 +7,14 @@
 
 import Foundation
 @testable import TopupImpl
+import FinanceEntity
+import FinanceRepository
+import FinanceRepositoryTestSupport
+import CombineUtil
 
 final class TopupDependencyMock: TopupInteractorDependency {
-  var cardOnFileRepository: CardOnFileRepositoryType
-  
-  var paymentMethodStream: CurrentValuePublisher<PaymentMethod>
+  var cardOnFileRepository: CardOnFileRepositoryType = CardOnFileRepositoryMock()
+  var paymentMethodStream: CurrentValuePublisher<PaymentMethod> = .init(PaymentMethod(id: "", name: "", digits: "", color: "", isPrimary: false))
   
   
 }

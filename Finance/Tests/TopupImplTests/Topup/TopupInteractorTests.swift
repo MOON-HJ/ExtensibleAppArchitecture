@@ -9,6 +9,7 @@
 import XCTest
 import FinanceEntity
 import TopupTestSupport
+import FinanceRepositoryTestSupport
 
 final class TopupInteractorTests: XCTestCase {
   
@@ -17,6 +18,9 @@ final class TopupInteractorTests: XCTestCase {
   private var listener: TopupListenerMock!
   private var router: TopupRoutingMock!
   
+  private var cardOnFileRepository: CardOnFileRepositoryMock {
+    dependency.cardOnFileRepository as! CardOnFileRepositoryMock
+  }
   
   // TODO: declare other objects and mocks you need as private vars
   
@@ -36,8 +40,33 @@ final class TopupInteractorTests: XCTestCase {
   
   // MARK: - Tests
   
-  func test_exampleObservable_callsRouterOrListener_exampleProtocol() {
-    // This is an example of an interactor test case.
-    // Test your interactor binds observables and sends messages to router or listener.
+  func testActivate() {
+    // given
+    let cards = [
+      PaymentMethod(id: "0", name: "Zero", digits: "0123", color: "", isPrimary: false)
+    ]
+    
+    cardOnFileRepository.cardOnFileSubject.send(cards)
+    
+    // when
+    sut.activate()
+    
+    // then
+    XCTAssertEqual(router.attachEnterAmountCallCount, 1)
+    XCTAssertEqual(dependency.paymentMethodStream.value.name, "Zero")
   }
+  
+  func testActivateWithoudCard() {
+    // given
+    cardOnFileRepository.cardOnFileSubject.send([])
+    
+    // when
+    sut.activate()
+    
+    // then
+    XCTAssertEqual(router.attachAddPaymentMethodCallCount, 1)
+    XCTAssertEqual(router.attachAddPaymentMethodCloseButtonType, .close)
+  }
+  
+  
 }

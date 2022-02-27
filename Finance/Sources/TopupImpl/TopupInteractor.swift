@@ -73,7 +73,6 @@ final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodList
     if !isEnterAmountRoot {
       listener?.topupDidClose()
     }
-    listener?.topupDidClose()
   }
   
   func addPaymentMethodDidAddCard(paymentMethod: PaymentMethod) {

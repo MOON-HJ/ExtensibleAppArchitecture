@@ -7,11 +7,16 @@
 
 @testable import TopupImpl
 import XCTest
+import FinanceEntity
+import TopupTestSupport
 
 final class TopupInteractorTests: XCTestCase {
   
   private var sut: TopupInteractor!
   private var dependency: TopupDependencyMock!
+  private var listener: TopupListenerMock!
+  private var router: TopupRoutingMock!
+  
   
   // TODO: declare other objects and mocks you need as private vars
   
@@ -19,9 +24,14 @@ final class TopupInteractorTests: XCTestCase {
     super.setUp()
     
     self.dependency = TopupDependencyMock()
-    sut = TopupInteractor(dependency: dependency)
-    sut.listener
-    // TODO: instantiate objects and mocks
+    self.listener = TopupListenerMock()
+    
+    let interactor = TopupInteractor(dependency: self.dependency)
+    self.router = TopupRoutingMock(interactable: interactor)
+    
+    interactor.listener = self.listener
+    interactor.router = self.router
+    self.sut = interactor
   }
   
   // MARK: - Tests

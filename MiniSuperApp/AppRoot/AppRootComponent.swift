@@ -45,10 +45,14 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
        rootViewController: ViewControllable
   ) {
     
+    #if UITEST
+    let config = URLSessionConfiguration.default
+    #else
     let config = URLSessionConfiguration.ephemeral
     config.protocolClasses = [SuperAppURLProtocol.self]
-    
     setupURLProtocol()
+    #endif
+    
     let network = NetworkImp(session: URLSession(configuration: config))
         
     self.cardOnFileRepository = CardOnFileRepository(network: network, baseURL: BaseURL().financeBaseURL)

@@ -36,6 +36,7 @@ final class FinanceHomeViewController: UIViewController, FinanceHomePresentable,
     func setupViews() {
         title = "슈퍼페이"
         tabBarItem = UITabBarItem(title: "슈퍼페이", image: UIImage(systemName: "creditcard"), selectedImage: UIImage(systemName: "creditcard.fill"))
+      tabBarItem.accessibilityIdentifier = "superpay_home_tap_bar_item"
         view.backgroundColor = .white
         view.addSubview(stackView)
         

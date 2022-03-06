@@ -34,8 +34,10 @@ public final class AddPaymentMethodListenerMock: AddPaymentMethodListener {
   }
   
   public var addPaymentMethodDidAddCardCallCount = 0
+  public var addPaymentMethodDidAddCardPaymentMethod: PaymentMethod?
   public func addPaymentMethodDidAddCard(paymentMethod: PaymentMethod) {
     addPaymentMethodDidAddCardCallCount += 1
+    self.addPaymentMethodDidAddCardPaymentMethod = paymentMethod
   }
   
   public init() { }

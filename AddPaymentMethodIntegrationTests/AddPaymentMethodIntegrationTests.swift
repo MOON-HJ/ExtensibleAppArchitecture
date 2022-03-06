@@ -7,6 +7,8 @@
 
 import XCTest
 import Hammer
+
+import FinanceEntity
 import FinanceRepository
 import FinanceRepositoryTestSupport
 import AddPaymentMethod
@@ -18,9 +20,13 @@ import RIBsUtil
 class AddPaymentMethodIntegrationTests: XCTestCase {
   private var eventGenaratror: EventGenerator!
   private var dependency: AddPaymentMethodDependencyMock!
-  private var listener: AddPaymentMethodListener!
+  private var listener: AddPaymentMethodListenerMock!
   private var viewController: UIViewController!
   private var router: Routing!
+  
+  private var repository: CardOnFileRepositoryMock {
+    dependency.cardOnFileRepository as! CardOnFileRepositoryMock
+  }
   
   override func setUpWithError() throws {
     try super.setUpWithError()
@@ -43,9 +49,16 @@ class AddPaymentMethodIntegrationTests: XCTestCase {
   
   func testAddPaymentMethod() throws {
     // given
+    repository.addedPaymentMethod = PaymentMethod(
+      id: "1234",
+      name: "",
+      digits: "",
+      color: "",
+      isPrimary: false)
+    
     let cardNumberTextField = try eventGenaratror.viewWithIdentifier("addpaymentmethod_cardnumber_textfield")
     try eventGenaratror.fingerTap(at: cardNumberTextField)
-    try eventGenaratror.keyType("2345678234567")
+    try eventGenaratror.keyType("12345678234567")
 
     let securityTextField = try eventGenaratror.viewWithIdentifier("addpaymentmethod_security_textfield")
     try eventGenaratror.fingerTap(at: securityTextField)
@@ -57,9 +70,14 @@ class AddPaymentMethodIntegrationTests: XCTestCase {
     try eventGenaratror.wait(5)
     
     // when
+    let confirm = try eventGenaratror.viewWithIdentifier("addpaymentmethod_addcard_button")
+    try eventGenaratror.fingerTap(at: confirm)
     
     // then
-
+    XCTAssertEqual(repository.addCardCallCount, 1)
+    try eventGenaratror.wait(0.2)
+    XCTAssertEqual(listener.addPaymentMethodDidAddCardCallCount, 1)
+    XCTAssertEqual(listener.addPaymentMethodDidAddCardPaymentMethod?.id, "1234")
   }
 }
 

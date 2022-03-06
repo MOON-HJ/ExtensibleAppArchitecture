@@ -40,7 +40,8 @@ let package = Package(
     .package(name: "ModernRIBs", url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1")),
     .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.3"),
     .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.9.0"),
-    .package(name: "Swifter", url: "https://github.com/httpswift/swifter", from: "1.5.0")
+    .package(name: "Swifter", url: "https://github.com/httpswift/swifter", from: "1.5.0"),
+    .package(name: "Hammer", url: "https://github.com/lyft/Hammer", from: "0.13.2")
   ],
   targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -65,7 +66,8 @@ let package = Package(
       name: "PlatformTestSupport",
       dependencies: [
         "SnapshotTesting",
-        "Swifter"
+        "Swifter",
+        "Hammer"
       ]),
     .target(
       name: "SuperUI",

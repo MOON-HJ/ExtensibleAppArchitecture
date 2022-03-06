@@ -8,6 +8,10 @@ packages:
   url: https://github.com/DevYeom/ModernRIBs
   from: 1.0.0
 
+ Swifter:
+  url: https://github.com/httpswift/swifter
+  from: 1.5.0
+
  Finance:
   path: Finance
 
@@ -37,8 +41,10 @@ targets:
       PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
      configs:
        Debug:
-         DEVELOPMENT_TEAM: "QL44HLLM22"
-
+        DevelopmentTeam: QL44HLLM22
+    scheme:
+      testTargets:
+        - MiniSuperAppUITests
     sources: # 소스들 추가
       - path: MiniSuperApp
     dependencies:
@@ -79,17 +85,17 @@ targets:
       PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
      configs:
        Debug:
-         DEVELOPMENT_TEAM: "QL44HLLM22"
+         DevelopmentTeam: QL44HLLM22
 
     sources: # 소스들 추가
       - path: MiniSuperAppUITests
     dependencies:
-      - target: MiniSuperApp
+      - package: Swifter
+        product: Swifter
 
 schemes:
   SuperMiniApp:
     build:
       targets:
         MiniSuperApp: all
-        MiniSuperAppUITests: [test]
-    run:
+        MiniSuperAppUITests: [build, test]

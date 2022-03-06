@@ -7,16 +7,45 @@
 
 import XCTest
 import Hammer
+import FinanceRepository
+import FinanceRepositoryTestSupport
+import AddPaymentMethod
+import AddPaymentMethodTestSupport
+import ModernRIBs
+@testable import AddPaymentMethodImpl
 
 class AddPaymentMethodIntegrationTests: XCTestCase {
-  
-  var eventGenaratror: EventGenerator!
+  private var eventGenaratror: EventGenerator!
+  private var dependency: AddPaymentMethodDependencyMock!
+  private var listener: AddPaymentMethodListener!
+  private var viewController: UIViewController!
+  private var router: Routing!
   
   override func setUpWithError() throws {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    try super.setUpWithError()
+    
+    self.dependency = AddPaymentMethodDependencyMock()
+    let builder = AddPaymentMethodBuilder(dependency: self.dependency)
+    self.listener = AddPaymentMethodListenerMock()
+    let router = builder.build(withListener: self.listener, closeButtonType: .close)
+    
+    self.viewController = router.viewControllable.uiviewController
+    
+    eventGenaratror = try EventGenerator(viewController: self.viewController)
+    
+    router.load()
+    router.interactable.activate()
+    
+    self.router = router
   }
   
-  override func tearDownWithError() throws {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+  func testAddPaymentMethod() throws {
+    try eventGenaratror.wait(3)
   }
+}
+
+
+final class AddPaymentMethodDependencyMock: AddPaymentMethodDependency {
+  var cardOnFileRepository: CardOnFileRepositoryType = CardOnFileRepositoryMock()
+  
 }

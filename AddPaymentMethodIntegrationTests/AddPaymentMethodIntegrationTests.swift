@@ -42,7 +42,24 @@ class AddPaymentMethodIntegrationTests: XCTestCase {
   }
   
   func testAddPaymentMethod() throws {
-    try eventGenaratror.wait(3)
+    // given
+    let cardNumberTextField = try eventGenaratror.viewWithIdentifier("addpaymentmethod_cardnumber_textfield")
+    try eventGenaratror.fingerTap(at: cardNumberTextField)
+    try eventGenaratror.keyType("2345678234567")
+
+    let securityTextField = try eventGenaratror.viewWithIdentifier("addpaymentmethod_security_textfield")
+    try eventGenaratror.fingerTap(at: securityTextField)
+    try eventGenaratror.keyType("123")
+
+    let expiryTextField = try eventGenaratror.viewWithIdentifier("addpaymentmethod_expiry_textfield")
+    try eventGenaratror.fingerTap(at: expiryTextField)
+    try eventGenaratror.keyType("1212")
+    try eventGenaratror.wait(5)
+    
+    // when
+    
+    // then
+
   }
 }
 

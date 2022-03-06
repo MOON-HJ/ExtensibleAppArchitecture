@@ -12,6 +12,7 @@ import FinanceRepositoryTestSupport
 import AddPaymentMethod
 import AddPaymentMethodTestSupport
 import ModernRIBs
+import RIBsUtil
 @testable import AddPaymentMethodImpl
 
 class AddPaymentMethodIntegrationTests: XCTestCase {
@@ -29,9 +30,10 @@ class AddPaymentMethodIntegrationTests: XCTestCase {
     self.listener = AddPaymentMethodListenerMock()
     let router = builder.build(withListener: self.listener, closeButtonType: .close)
     
-    self.viewController = router.viewControllable.uiviewController
+    let navigation = NavigationControllerable(root: router.viewControllable)
+    self.viewController = navigation.uiviewController
     
-    eventGenaratror = try EventGenerator(viewController: self.viewController)
+    eventGenaratror = try EventGenerator(viewController: navigation.navigationController)
     
     router.load()
     router.interactable.activate()

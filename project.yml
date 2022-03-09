@@ -12,6 +12,10 @@ packages:
   url: https://github.com/httpswift/swifter
   from: 1.5.0
 
+ Hammer:
+  url: https://github.com/lyft/Hammer.git
+  from: "0.13.0"
+
  Finance:
   path: Finance
 
@@ -76,6 +80,7 @@ targets:
         product: Network
       - package: Platform
         product: NetworkImp
+
   MiniSuperAppUITests:
     type: bundle.ui-testing
     platform: iOS
@@ -92,6 +97,32 @@ targets:
     dependencies:
       - package: Swifter
         product: Swifter
+  
+  TestHost:
+    type: application # 타겟 타입
+    platform: iOS # 타겟 플랫폼
+    settings:
+     base: 
+      INFOPLIST_FILE: TestHost/Info.plist
+      PRODUCT_BUNDLE_IDENTIFIER: com.moon.testhost
+     configs:
+       Debug:
+        DevelopmentTeam: QL44HLLM22
+    sources: # 소스들 추가
+      - path: TestHost
+    dependencies:
+      - package: Finance
+        product: AddPaymentMethodImpl
+      - package: Hammer
+
+
+  AddPaymentMethodIntegrationTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      TEST_HOST: TestHost
+      PRODUCT_BUNDLE_IDENTIFIER: com.moon.testhost
+    sources: AddPaymentMethodIntegrationTests
 
 schemes:
   SuperMiniApp:
@@ -99,3 +130,4 @@ schemes:
       targets:
         MiniSuperApp: all
         MiniSuperAppUITests: [build, test]
+        AddPaymentMethodIntegrationTests: all

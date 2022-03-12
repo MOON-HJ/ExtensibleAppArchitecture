@@ -34,22 +34,22 @@ packages:
 options:
   tabWidth: 2 # tab 설정
   indentWidth: 2 # indent 설정
-  
+
+configs:
+  Debug: debug
+  Release: release
+  UITest: uitest
+
 targets:
   MiniSuperApp:
     type: application # 타겟 타입
     platform: iOS # 타겟 플랫폼
     settings:
-     base: 
-      INFOPLIST_FILE: MiniSuperApp/Info.plist
-      PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
-     configs:
-       Debug:
-        DevelopmentTeam: QL44HLLM22
-    scheme:
-      testTargets:
-        - MiniSuperAppUITests
-    sources: # 소스들 추가
+      base: 
+        INFOPLIST_FILE: MiniSuperApp/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
+        DEVELOPMENT_TEAM: "QL44HLLM22"          
+    sources:
       - path: MiniSuperApp
     dependencies:
       - package: CombineExt
@@ -85,17 +85,15 @@ targets:
     type: bundle.ui-testing
     platform: iOS
     settings:
-     base:
-      INFOPLIST_FILE: MiniSuperApp/Info.plist
-      PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
-     configs:
-       Debug:
-         DEVELOPMENT_TEAM: "QL44HLLM22"
+      base:
+        INFOPLIST_FILE: MiniSuperApp/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
+        DEVELOPMENT_TEAM: "QL44HLLM22"
     scheme:
       testTargets:
         - MiniSuperAppUITests
       gatherCoverageData: true
-    sources: # 소스들 추가
+    sources:
       - path: MiniSuperAppUITests
     dependencies:
       - package: Platform

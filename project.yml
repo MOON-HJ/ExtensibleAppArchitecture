@@ -38,7 +38,7 @@ options:
 configs:
   Debug: debug
   Release: release
-  UITest: uitest
+  UITest: debug
 
 targets:
   MiniSuperApp:
@@ -100,36 +100,3 @@ targets:
         product: PlatformTestSupport
         link: true
       - target: MiniSuperApp
-  TestHost:
-    type: application # 타겟 타입
-    platform: iOS # 타겟 플랫폼
-    settings:
-     base: 
-      INFOPLIST_FILE: TestHost/Info.plist
-      PRODUCT_BUNDLE_IDENTIFIER: com.moon.testhost
-     configs:
-       Debug:
-        DevelopmentTeam: QL44HLLM22
-    sources: # 소스들 추가
-      - path: TestHost
-    dependencies:
-      - package: Finance
-        product: AddPaymentMethodImpl
-      - package: Hammer
-
-
-  AddPaymentMethodIntegrationTests:
-    type: bundle.unit-test
-    platform: iOS
-    settings:
-      TEST_HOST: TestHost
-      PRODUCT_BUNDLE_IDENTIFIER: com.moon.testhost
-    sources: AddPaymentMethodIntegrationTests
-
-schemes:
-  SuperMiniApp:
-    build:
-      targets:
-        MiniSuperApp: all
-        MiniSuperAppUITests: [build, test]
-        AddPaymentMethodIntegrationTests: all

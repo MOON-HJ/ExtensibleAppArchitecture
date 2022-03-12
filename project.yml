@@ -48,7 +48,11 @@ targets:
       base: 
         INFOPLIST_FILE: MiniSuperApp/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
-        DEVELOPMENT_TEAM: "QL44HLLM22"          
+        DEVELOPMENT_TEAM: "QL44HLLM22" 
+    scheme:
+      testTargets:
+        - MiniSuperAppUITests
+      gatherCoverageData: true       
     sources:
       - path: MiniSuperApp
     dependencies:

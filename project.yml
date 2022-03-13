@@ -104,3 +104,30 @@ targets:
         product: PlatformTestSupport
         link: true
       - target: MiniSuperApp
+  AddPaymentMethodIntegrationTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      base:
+        INFOPLIST_FILE: MiniSuperApp/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
+        DEVELOPMENT_TEAM: "QL44HLLM22"
+    scheme:
+      testTargets:
+        - AddPaymentMethodIntegrationTests
+      gatherCoverageData: true
+    sources:
+      - path: AddPaymentMethodIntegrationTests
+    dependencies:
+      - package: Platform
+        product: PlatformTestSupport
+      - package: Finance
+        product: FinanceRepository
+      - package: Finance
+        product: AddPaymentMethod
+      - package: Finance
+        product: AddPaymentMethodImpl
+      - package: Finance
+        product: FinanceRepositoryTestSupport
+      - package: Finance
+        product: AddPaymentMethodTestSupport

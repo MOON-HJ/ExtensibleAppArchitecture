@@ -1,5 +1,14 @@
 # ExtensibleAppArchitecture
-패스트캠퍼스, The RED : 슈퍼앱 운영을 위한 확장성 높은 앱 아키텍처 구축 공부내역 정리
+
+📱 패스트캠퍼스, The RED : 슈퍼앱 운영을 위한 확장성 높은 앱 아키텍처 구축 공부내역 정리 : [🔗 FastCampus 강좌링크](https://fastcampus.co.kr/courses/206295/clips/)
+
+패스트캠퍼스 강의코드에 Xcodegen을 적용. 
+
+* [📁 Xcodegen](https://github.com/yonaskolb/XcodeGen)
+
+*  [📑 Xcodegen project.yml 구조](https://github.com/MOON-HJ/ExtensibleAppArchitecture/blob/main/project.yml) 
+
+------
 
 ### Scale과 연관된 다양한 문제
 

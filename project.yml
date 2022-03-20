@@ -104,6 +104,29 @@ targets:
         product: PlatformTestSupport
         link: true
       - target: MiniSuperApp
+
+  TestHost:
+    type: application # 타겟 타입
+    platform: iOS # 타겟 플랫폼
+    settings:
+      base: 
+        INFOPLIST_FILE: TestHost/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.moon.testhost
+        DEVELOPMENT_TEAM: "QL44HLLM22" 
+    info:
+      path: TestHost/Info.plist
+      properties:
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchStoryboardName: LaunchScreen
+
+    scheme:
+      testTargets:
+        - AddPaymentMethodIntegrationTests
+      gatherCoverageData: true       
+    sources:
+      - path: TestHost
+
+
   AddPaymentMethodIntegrationTests:
     type: bundle.unit-test
     platform: iOS
@@ -112,6 +135,7 @@ targets:
         INFOPLIST_FILE: MiniSuperApp/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.moon.miniApp
         DEVELOPMENT_TEAM: "QL44HLLM22"
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/TestHost.app/TestHost
     scheme:
       testTargets:
         - AddPaymentMethodIntegrationTests
